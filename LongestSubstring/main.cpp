@@ -17,8 +17,8 @@ string longestSubstring(string&, string&); // Function prototype
 
 // Program execution
 int main(int argc, const char * argv[]) {
-    string stringOne = "ABXBA";     // input strings, can be from console but not necessary
-    string stringTwo = "ABAB";      // input strings, can be from console but not necessary
+    string stringOne = "ehEhXyZsg";     // input strings, can be from console but not necessary
+    string stringTwo = "hehEhsAbdZg";      // input strings, can be from console but not necessary
     
     string sub = longestSubstring(stringTwo, stringOne);    // Execute function
     
@@ -53,16 +53,19 @@ string longestSubstring(string& str1, string& str2) {
     }
     
     // loop through shorter string and look for the characters in the longer string, ensuring that the index is creater than or equal to the index in the smaller string
+    int index = 0;
     if (largestString)
         for (int i = 0; i < str2.size(); i++) {
-            if (str1.find(str2.at(i), i) != string::npos) {
+            if (str1.find(str2.at(i), index) != string::npos) {
+                index = str1.find(str2.at(i), index);
                 // add the character to the substring
                 substring.push_back(str2.at(i));
             }
         }
     else
         for (int i = 0; i < str1.size(); i++) {
-            if (str2.find(str1.at(i), i) != string::npos) {
+            if (str2.find(str1.at(i), index) != string::npos) {
+                index = str1.find(str2.at(i), index);
                 substring.push_back(str1.at(i));
             }
         }
